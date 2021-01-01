@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if title %}
+{{ title }} - {{ block.super }}
+{% else %}
+{{ block.super }}
+{% endif %}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+<div class="col m8">
+	<div class="card teal accent-2 card-panel hoverable">
+		<h5>About {{ object.title }}</h5>
+		<p>{{ object.description|safe }}</p>
+	</div>
+
+</div>
+
+<div class="col m4">
+	<div class="card teal accent-2 card-panel hoverable">
+		<h5>Skill Set</h5>
+    	{% for skill in object.skills.all %}
+  			<a href="{% url 'skill_detail' skill.pk %}"><div class="chip hoverable teal accent-2 ">{{ skill.title }}</div></a>
+		{% endfor %}
+	</div>
+</div>
+</div>
+{% endblock %}

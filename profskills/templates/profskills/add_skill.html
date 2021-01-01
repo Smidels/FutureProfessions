@@ -1,0 +1,47 @@
+{% extends 'studio_base.html' %}
+{% load materializecss %}
+
+{% block title %}
+Add profession information :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col m3"></div>
+		<div class="col m6">
+			<h4>Create New Skill</h4>
+			<form method="post" action="{% url 'add_skill' %}">
+				{% csrf_token %}
+    				<div class="fieldWrapper">
+        				{{ form.title.errors }}
+        				{{ form.title.label_tag }} {{ form.title }}
+        				{% if form.title.help_text %}
+        					<p class="help">{{ form.title.help_text|safe }}</p>
+        				{% endif %}
+    				</div>
+
+    				<div class="fieldWrapper">
+    					<div class="row">
+    						<div class="col">
+        						{{ form.info.errors }}
+        						{{ form.info.label_tag }} {{ form.info }}
+        						{% if form.info.help_text %}
+        						<p class="help">{{ form.info.help_text|safe }}</p>
+        						{% endif %}
+        					</div>
+        					<div class="col">
+								<a class="btn-floating btn-large waves-effect waves-light red" href="{% url 'add_information' %}" title="Add another Skill Info"><i class="material-icons">add</i></a>
+							</div>
+						</div>
+    				</div>
+				<button type="submit"  class="waves-effect waves-light btn">Create</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

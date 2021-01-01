@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if title %}
+{{ title }} - {{ block.super }}
+{% else %}
+{{ block.super }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% for info in object.info.all %}
+<div class="row">
+	<div class="col m6">
+		<div class="card teal accent-2 card-panel hoverable">
+			<h3>{{ info.title }}</h5>
+			<p>Category of ingormation: {{ info.category }}</p>
+			<h4>Description</h4>
+			<p>{{ info.description }}</p>
+		</div>
+	</div>
+
+	<div class="col m6">
+		<div class="card teal accent-2 card-panel hoverable">
+			<h3>Sources</h3>
+			{% for source in info.sourses.all %}
+				<p>{{ source.title }}</p>
+				<p>{{ source.description }}</p>
+				<p>{{ source.link }}</p>
+			{% endfor %}
+		</div>
+	</div>	
+</div>
+	{% endfor %}
+
+	{% endblock %}

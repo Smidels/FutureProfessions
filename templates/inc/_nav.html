@@ -1,0 +1,66 @@
+<nav class="nav-extended">
+    <div class="nav-wrapper cyan darken-1">
+        <!-- <a href="#" class="brand-logo">Logo</a> -->
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+            {% if request.user.is_authenticated %}
+                <li class="right"><a href="{% url 'logout' %}">LOGOUT</a></li>
+                <li class="right"><a href="{% url 'studio' %}">PROFESSION CREATION STUDIO</a></li>
+                <li class="col m12"><a class="dropdown-trigger" href="#" data-target="dropdown1">My Profile<i class="material-icons right">arrow_drop_down</i></a>
+
+            {% else %}
+                <li class=""><a href="{% url 'user_registration' %}">SIGN UP</a></li>
+                <li class=""><a href="{% url 'user_login' %}">SIGN IN</a></li>
+            {% endif %}
+            <li class="left"><a href="{% url 'home' %}" class="">HOME</a></li>
+            </li>
+        </ul>
+
+    </div>
+
+    {% block dropdown_content %}
+        <ul id="dropdown1" class="dropdown-content">
+{#            <li><a href="#!"></a></li>#}
+
+
+            <li class="divider"></li>
+            <li><a href="{% url 'edit_profile' user.pk %}">Edit Profile</a></li>
+{#            <li><a href="#!">two</a></li>#}
+            <li class="divider"></li>
+            <li><a href="#!">My Content</a></li>
+        </ul>
+
+    {% endblock %}
+
+
+    {% block nav_content %}{% endblock %}
+    {#    <div class="nav-content">#}
+    {#      <ul class="tabs tabs-transparent">#}
+    {#        <li class="tab"><a href="#trends">Test 1</a></li>#}
+    {#        <li class="tab"><a class="active" href="#test2">Test 2</a></li>#}
+    {#        <li class="tab disabled"><a href="#test3">Disabled Tab</a></li>#}
+    {#        <li class="tab"><a href="#test4">Test 4</a></li>#}
+    {#      </ul>#}
+    {#    </div>#}
+
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+
+    {% if request.user.is_authenticated %}
+        <li class=""><a href="{% url 'logout' %}">LOGOUT</a></li>
+
+    {% else %}
+        <li class=""><a href="{% url 'user_registration' %}">SIGN UP</a></li>
+        <li class=""><a href="{% url 'user_login' %}">SIGN IN</a></li>
+    {% endif %}
+
+</ul>
+
+
+{% block nav_tabs %}{% endblock %}
+
+{#  <div id="test1" class="col s12">Test 1</div>#}
+{#  <div id="test2" class="col s12">Test 2</div>#}
+{#  <div id="test3" class="col s12">Test 3</div>#}
+{#  <div id="test4" class="col s12">Test 4</div>#}

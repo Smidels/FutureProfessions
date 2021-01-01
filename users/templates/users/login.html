@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if title %}
+Sign In - {{ block.super }}
+{% else %}
+{{ block.super }}
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container ">
+	<div class="row center">
+		<div class="col m3"></div>
+		<div class="col m6 center">
+		<h4>Sign In</h4>
+		<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="waves-effect waves-light btn">Sign In</button>
+		</form>
+	</div>
+</div>
+</div>
+
+{% endblock %}

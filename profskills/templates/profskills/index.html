@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load profskills_tags %}
+
+{% block title %}
+    {% if title %}
+        {{ title }} - {{ block.super }}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row center">
+            <h5>TRENDING PROFESSION CATEGORIES</h5>
+            {% for prof_cat in prof_categories %}
+                <div class="col">
+                    <div class="card hoverable">
+                        <a href="{% url 'category' prof_cat.pk %}">
+                            <div class="card-content teal lighten-2 white-text">
+                                <span class="card-title  center-align">{{ prof_cat.title }}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    <br>
+        <div class="divider"></div>
+        <div class="row">
+            <div class="col m8">
+                {% get_professions as professions %}
+                {% for prof in professions %}
+                    <div class="card card-panel hoverable light-green lighten-3">
+                        <a href="{% url 'profession_detail' prof.pk %}">
+                            <div class="card-content black-text light-green lighten-3">
+                                <span class="card-title center-align ">
+                                    <h5><strong>{{ prof.title }}</strong></h5>
+                                </span>
+                                <p>{{ prof.description|safe|truncatewords:50 }}</p>
+                                <br>
+                                <div class="divider grey"></div>
+
+
+
+                                <div class="col m3">
+                                    {{ prof.created_by }}
+                                </div>
+                                <div class="col m3">
+                                    {{ prof.created_at|date:"SHORT_DATE_FORMAT" }}
+                                </div>
+
+
+
+                            </div>
+                        </a>
+                    </div>
+
+                {% endfor %}
+                <div class="divider"></div>
+            </div>
+
+            <div class="col m4">
+                <div class="card card-panel hoverable">
+                    <p>DISCOVER MORE OF WHAT MATTERS TO YOU</p>
+                    {% get_skills as skills %}
+                    {% for skill in skills %}
+                        <a href="{% url 'skill_detail' skill.pk %}">
+                            <div class="chip hoverable green lighten-2 white-text">{{ skill.title }}</div>
+                        </a>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

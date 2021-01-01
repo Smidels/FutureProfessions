@@ -1,0 +1,8 @@
+{% load profskills_tags %}
+
+<div class="row l12">
+        {% get_skills as skills %}
+        {% for skill in skills %}
+        <a href="#"><div class="chip hoverable teal accent-2 ">{{ skill.title }}</div></a>
+        {% endfor %}
+</div>

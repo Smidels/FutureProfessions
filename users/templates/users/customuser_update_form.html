@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if title %}
+        Edit Profile - {{ block.super }}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row m12">
+            <div class="col">
+            <p>Edit profile</p>
+                <form method="post">
+                    <div class="row">
+                        <div class="col">
+                            {% csrf_token %}
+                            <div class="col m6 fieldWrapper">
+                                {{ form.first_name.errors }}
+                                {{ form.first_name.label_tag }} {{ form.first_name }}
+                                {% if form.first_name.help_text %}
+                                    <p class="help">{{ form.first_name.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="col m6 fieldWrapper">
+                                {{ form.last_name.errors }}
+                                {{ form.last_name.label_tag }} {{ form.last_name }}
+                                {% if form.last_name.help_text %}
+                                    <p class="help">{{ form.last_name.help_text|safe }}</p>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m6">
+                            <div class="fieldWrapper">
+                                {{ form.nickname.errors }}
+                                {{ form.nickname.label_tag }} {{ form.nickname }}
+                                {% if form.nickname.help_text %}
+                                    <p class="help">{{ form.nickname.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m6">
+                            <div class="fieldWrapper">
+                                {{ form.email.errors }}
+                                {{ form.email.label_tag }} {{ form.email }}
+                                {% if form.email.help_text %}
+                                    <p class="help">{{ form.email.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <button type="submit" class="waves-effect waves-light btn">Send Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

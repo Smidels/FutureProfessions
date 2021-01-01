@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if title %}
+    {{ title }} - {{ block.super }}
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
+
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+{% for prof in professions %}
+    <div class="col m2">
+      <div class="card teal accent-2 card-panel hoverable">
+        <a href="#">
+        	<div class="card-content blue-grey-text  ">
+          		<span class="card-title  center-align">{{ prof.title }}</span>
+          		<p>{{ prof.description|safe|truncatewords:50 }}</p>
+        	</div></a>
+      </div>
+      </div>
+{% endfor %}
+
+{% endblock %}

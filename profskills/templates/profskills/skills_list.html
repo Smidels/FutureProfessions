@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if title %}
+    {{ title }} - {{ block.super }}
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
+
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="col m2">
+	<div class="card teal accent-2 card-panel hoverable">
+		<h5>All Skills on My Site</h5>
+    	{% for skill in skills %}
+  			<a href="{% url 'skill_detail' skill.pk %}"><div class="chip hoverable teal accent-2 ">{{ skill.title }}</div></a>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

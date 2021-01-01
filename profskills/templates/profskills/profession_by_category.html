@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if title %}
+{{ title }} - {{ block.super }}
+{% else %}
+{{ block.super }}
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col s6">
+			{% for prof in professions %}
+			<div class="card  teal accent-2 card-panel hoverable">
+				<a href="{% url 'profession_detail' prof.pk %}">
+					<div class="card-content blue-grey-text  ">
+						<span class="card-title  center-align">{{ prof.title }}</span>
+						<p>{{ prof.description|safe|truncatewords:50 }}</p>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

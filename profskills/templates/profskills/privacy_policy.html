@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if title %}
+    {{ title }} - {{ block.super }}
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
+
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+
+{% include 'inc/_policy.html' %}
+
+</div>
+{% endblock %}
